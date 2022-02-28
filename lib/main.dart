@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flash_chat_flutter/screens/welcome_screen.dart';
+import 'package:flash_chat_flutter/screens/login_screen.dart';
+import 'package:flash_chat_flutter/screens/registration_screen.dart';
+import 'package:flash_chat_flutter/screens/chat_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,11 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      theme: ThemeData.dark().copyWith(
+        textTheme: TextTheme(
+          bodyText1: TextStyle(color: Colors.black54),
+        ),
       ),
-      home: Scaffold(),
+      home: WelcomeScreen(),
     );
   }
 }
