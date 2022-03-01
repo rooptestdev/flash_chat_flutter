@@ -1,5 +1,7 @@
+import 'package:flash_chat_flutter/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat_flutter/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ChatScreen extends StatefulWidget {
   static const String id = 'chat_screen';
@@ -10,6 +12,15 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String? email;
+  @override
+  void initState() {
+    super.initState();
+    email = _auth.currentUser?.email;
+    print(email);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,8 +28,10 @@ class _ChatScreenState extends State<ChatScreen> {
         leading: null,
         actions: [
           IconButton(
-            onPressed: () {
+            onPressed: () async {
               //TODO: Implement logout function.
+              await FirebaseAuth.instance.signOut();
+              Navigator.popAndPushNamed(context, WelcomeScreen.id);
             },
             icon: const Icon(Icons.close),
           ),
